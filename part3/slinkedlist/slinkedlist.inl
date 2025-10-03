@@ -4,13 +4,13 @@ using namespace std;
 
 
 template <typename E>
-SLinkedList<E>::SLinkedList<E>(): head(nullptr) {}
+SLinkedList<E>::SLinkedList(): head(nullptr) {}
 
 template <typename E>
-SLinkedList<E>::~SLinkedList<E>(){
+SLinkedList<E>::~SLinkedList(){
     // My addition
     while (head) {
-        SNode* tmp = head;
+        SNode<E>* tmp = head;
         head = head->next;
         delete tmp;
     }
@@ -22,8 +22,13 @@ bool SLinkedList<E>::empty() const{
 }
 
 template <typename E>
+E& SLinkedList<E>::front() const {
+    return head;
+}
+
+template <typename E>
 void SLinkedList<E>::addFront(const E& e){
-    SNode* n = new SNode();
+    SNode<E>* n = new SNode<E>();
     n->elem = e;
     n->next = head;
     head = n;
@@ -48,7 +53,7 @@ void SLinkedList<E>::addBack(const E& e){
 
 template <typename E>
 int SLinkedList<E>::size() {
-    SNode* h = head;
+    SNode<E>* h = head;
     int count = 0;
     while(h != nullptr){
         count++;
@@ -58,38 +63,21 @@ int SLinkedList<E>::size() {
 }
 
 template <typename E>
-void SLinkedList<E>::print(){
-    SNode *h = head;
+void SLinkedList<E>::print() const {
+    SNode<E> *h = head;
     if(empty()){
-        cout << "List is Empty!" << endl;
         return;
     }
     while(h!=nullptr){
-        cout<< h->elem <<" ";
+        cout<< h->elem <<"->";
         h = h->next;
     }
-}
-
-template <typename E>
-int SLinkedList<E>::sum() {
-    SNode* h = head;
-    int sum = 0;
-    while(h!=nullptr){
-        sum = sum + h->elem;
-        h = h->next;
-    }
-    return sum;
-}
-
-template <typename E>
-double SLinkedList<E>::average(){
-    return double(sum()) / size();
 }
 
 template <typename E>
 void SLinkedList<E>::removeFront() {
     if (empty()) return;
-    SNode* tmp = head;
+    SNode<E>* tmp = head;
     head = head->next;
     delete tmp;
 }
@@ -102,8 +90,8 @@ void SLinkedList<E>::removeBack() {
         head = nullptr;
         return;
     }
-    SNode* prev = head;
-    SNode* target = head->next;
+    SNode<E>* prev = head;
+    SNode<E>* target = head->next;
 
     while (target->next) {
         prev = target;

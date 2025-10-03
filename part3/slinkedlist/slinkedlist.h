@@ -1,17 +1,19 @@
 #pragma once
 
 template <typename E>
+class SLinkedList;
+
+template <typename E>
 class SNode{
 private:
     E elem;
-    // was: string
-    IntNode* next;
-    friend class IntLinkedList;
+    SNode* next;
+    friend class SLinkedList<E>;
 };
 
 
 template <typename E>
-class SLinkedList{
+class SLinkedList {
 private:
     SNode<E>* head;
 public:
@@ -21,15 +23,13 @@ public:
     void addFront(const E& e);
     void addBack(const E& e);
     int size();
-    void print();
-    int sum();
-    double average();
+    void print() const;
 
-    // Problems
-    
-    const E& front() const;
+    E& front() const;
     void removeFront();
     void removeBack();
-    int removeAll(const E& e); // returns the number of nodes removed
+    int removeAll(const E& e);
     void reverse();
 };
+
+#include "slinkedlist.inl"
