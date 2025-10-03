@@ -7,7 +7,6 @@ int main(void) {
     LinkedStack<int> intStack;
     cout << intStack.empty() << endl;
     intStack.push(1);
-    cout << "Top:" << intStack.top() << endl;
     cout << intStack.size() << endl;
     intStack.pop();
     cout << intStack.empty() << endl;
