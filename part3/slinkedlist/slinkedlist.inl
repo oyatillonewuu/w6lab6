@@ -69,7 +69,7 @@ void SLinkedList<E>::print() const {
         return;
     }
     while(h!=nullptr){
-        cout<< h->elem <<"->";
+        cout<< h->elem <<" ";
         h = h->next;
     }
 }
